@@ -267,7 +267,7 @@
     }
 
     if (canRunCube()) {
-      var url = new URL("core3d.js", SCRIPT_SRC).href;
+      var url = new URL("core3d.js?v=20261001b", SCRIPT_SRC).href;
       import(url).then(function (mod) {
         var poster = $(".object__poster", inner);
         if (poster) poster.style.display = "none";
