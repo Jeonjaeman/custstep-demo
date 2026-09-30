@@ -1,7 +1,0 @@
-{
-  "tool_name": "mcp__Claude_Browser__browser_batch",
-  "tool_input_preview": "{\"actions\":[{\"name\":\"computer\",\"input\":{\"action\":\"scroll\",\"coordinate\":[400,300],\"scroll_direction\":\"down\",\"scroll_amount\":10}},{\"name\":\"computer\",\"input\":{\"action\":\"wait\",\"duration\":2}},{\"name\":\"comp...",
-  "error": "[computer:scroll] scrolled down at (400, 300)\n\n\nTab Context:\n- Executed on tabId: seed\n- Available tabs:\n  • tabId seed: \"CUST STEP 커스트 스텝 | 버려지는 커피박, 다시 발끝으로\" (\"http://localhost:8091/index.html\")\n- Viewport: emulating 1440x900 (you set this; reset it with preset \"desktop\" when you finish testing; the app also clears it when your turn ends or the pane's width changes)\n[computer:wait] waited 2s\n\n\nTab Context:\n- Executed on tabId: seed\n- Available tabs:\n  • tabId seed: \"CUST STEP 커스트 스텝 | 버려지는 커피박...",
-  "timestamp": "2026-09-30T15:59:24.805Z",
-  "retry_count": 2
-}
