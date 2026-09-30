@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CUST STEP 데모 사이트 제안</title>
+<meta name="description" content="커스트 스텝 브랜드 홍보 웹사이트 데모 2종과 견적서">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{--bg:#0b0805;--surface:#15100b;--text:#f3ede4;--muted:#a89d8c;--gold:#c9a36a;--line:rgba(255,255,255,.12)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Pretendard,-apple-system,sans-serif;line-height:1.6;word-break:keep-all}
+  .wrap{max-width:1100px;margin:0 auto;padding:64px 20px 80px}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+  .mark{letter-spacing:.32em;font-weight:700;font-size:14px}
+  .from{font-size:13px;color:var(--muted)}
+  h1{font-size:clamp(28px,5vw,48px);letter-spacing:-.03em;margin:0 0 8px;line-height:1.15}
+  .lead{color:var(--muted);margin:0 0 40px;max-width:640px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:28px}
+  .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;color:inherit;text-decoration:none;transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .5s}
+  .card:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+  .card .body{padding:20px 22px 24px}
+  .eyebrow{font-size:11px;letter-spacing:.24em;color:var(--gold);margin-bottom:8px}
+  .card h2{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .card .go{display:inline-block;margin-top:14px;font-size:13px;color:var(--gold)}
+  .quote{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .quote strong{display:block;font-size:18px;margin-bottom:2px}
+  .quote span{color:var(--muted);font-size:14px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 20px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:14px;transition:background .3s,color .3s}
+  .btn.primary{background:var(--gold);color:#1a120a}
+  .btn:hover{background:var(--gold);color:#1a120a}
+  footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="mark">CUST STEP</div>
+    <div class="from">제안: 탱탱소프트</div>
+  </header>
+  <h1>브랜드 홍보 웹사이트<br>데모 2종 제안</h1>
+  <p class="lead">커피박 재생 깔창·재생 컵 브랜드를 위한 시안입니다. 각 데모는 10페이지로 구성되어 있으며, PC 브라우저(Chrome)에서 스크롤하며 보시면 연출이 가장 잘 보입니다. 이미지·영상은 AI로 제작한 시안용이며 수치는 예시입니다.</p>
+
+  <div class="grid">
+    <a class="card" href="a/">
+      <img src="a/assets/hero-poster.webp" alt="A안 SOLID GROUND 미리보기">
+      <div class="body">
+        <div class="eyebrow">DEMO A</div>
+        <h2>SOLID GROUND</h2>
+        <p>다크 에스프레소 톤의 기술 신뢰형. 스크롤에 따라 재생되는 영상 히어로, 공정 확장 섹션, 제품 탭.</p>
+        <span class="go">데모 보기 →</span>
+      </div>
+    </a>
+    <a class="card" href="c/">
+      <img src="c/assets/hero-poster.webp" alt="C안 THE CORE OF COFFEE 미리보기">
+      <div class="body">
+        <div class="eyebrow">DEMO C</div>
+        <h2>THE CORE OF COFFEE</h2>
+        <p>딥 블랙 시네마틱 테크형. 3D 유리 커피콩 오브젝트, 브랜드 핀 패널, 커서 인터랙션.</p>
+        <span class="go">데모 보기 →</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="quote">
+    <div>
+      <strong>견적서 (TTS-2026-1001-01)</strong>
+      <span>브랜드 홍보 사이트 10페이지 · 도메인 2년 · 운영관리 1년 포함 · 부가세 별도</span>
+    </div>
+    <div class="btns">
+      <a class="btn primary" href="quote/CUST-STEP-quotation-2026-10-01.pdf" download>PDF 다운로드</a>
+      <a class="btn" href="quote/">웹으로 보기</a>
+    </div>
+  </div>
+
+  <footer>© 2026 탱탱소프트 · 본 페이지는 커스트 스텝 검토용 제안 자료입니다.</footer>
+</div>
+</body>
+</html>
