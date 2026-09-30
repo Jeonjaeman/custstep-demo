@@ -249,7 +249,7 @@
       var desktopish = !reduced && window.matchMedia("(min-width: 900px)").matches;
       var poster = $(".object__poster", inner);
       if (desktopish) {
-        // capable desktop without WebGL2: rotating video layer (poster stays if file is missing)
+        // rotating glass-bean video layer (poster stays if the file is missing)
         var v = document.createElement("video");
         v.className = "object__video";
         v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
@@ -261,13 +261,22 @@
         v.appendChild(s);
         v.addEventListener("loadeddata", function () { if (poster) poster.style.opacity = "0"; });
         inner.appendChild(v);
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
+        var tryPlay = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+        tryPlay();
+        // autoplay can be blocked until the first interaction; retry once on scroll/pointer/visibility
+        var retry = function () { if (v.paused) tryPlay(); };
+        window.addEventListener("scroll", retry, { once: true, passive: true });
+        window.addEventListener("pointerdown", retry, { once: true, passive: true });
+        document.addEventListener("visibilitychange", retry);
       }
       reveal();
     }
 
-    if (canRunCube()) {
-      var url = new URL("core3d.js?v=20261001b", SCRIPT_SRC).href;
+    // Default hero object is the rendered glass-bean video (matches the approved look on every GPU).
+    // The three.js bean stays available for review with ?3d=1.
+    var want3D = /[?&]3d=1/.test(location.search);
+    if (want3D && canRunCube()) {
+      var url = new URL("core3d.js?v=20261001c", SCRIPT_SRC).href;
       import(url).then(function (mod) {
         var poster = $(".object__poster", inner);
         if (poster) poster.style.display = "none";
