@@ -40,7 +40,7 @@ export function init(host, opts = {}) {
   // so we render on black and let CSS (mix-blend-mode: screen on .object) drop the black.
   renderer.setClearColor(0x000000, 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 1.45;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.domElement.setAttribute("aria-hidden", "true");
   host.appendChild(renderer.domElement);
@@ -49,19 +49,23 @@ export function init(host, opts = {}) {
   const pmrem = new THREE.PMREMGenerator(renderer);
   const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   scene.environment = envTex;
-  scene.environmentIntensity = 0.55;
+  scene.environmentIntensity = 1.0;
 
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
   camera.position.set(0, 0, 7.4);
 
   // lights: warm key, orange fill, lime rim
-  const key = new THREE.PointLight(0xffffff, 26, 30, 2);
+  const key = new THREE.PointLight(0xfff1dc, 60, 30, 2);
   key.position.set(3, 3.5, 4);
-  const orange = new THREE.PointLight(0xff6a2e, 60, 30, 2);
+  const orange = new THREE.PointLight(0xff7a2e, 140, 30, 2);
   orange.position.set(-3.5, -1.5, 2.5);
-  const rim = new THREE.PointLight(0xc9f24d, 34, 30, 2);
-  rim.position.set(2.8, 1.2, -3.2);
-  scene.add(key, orange, rim, new THREE.AmbientLight(0x2a1a10, 0.6));
+  const rim = new THREE.PointLight(0xc9f24d, 260, 30, 2);
+  rim.position.set(3.2, 2.2, -1.6);
+  const rim2 = new THREE.PointLight(0xd8ff5a, 160, 30, 2);
+  rim2.position.set(-2.6, -2.4, -1.2);
+  const spec = new THREE.PointLight(0xffffff, 90, 30, 2);
+  spec.position.set(-1.8, 2.8, 5.5);
+  scene.add(key, orange, rim, rim2, spec, new THREE.AmbientLight(0x2a1a10, 0.6));
 
   // backdrop lines for the glass to refract (thin laser strokes)
   const backdrop = new THREE.Group();
@@ -78,32 +82,32 @@ export function init(host, opts = {}) {
   scene.add(group);
 
   const glass = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff,
+    color: 0xffb066,
     metalness: 0,
-    roughness: 0.08,
-    transmission: 1,
-    thickness: 1.2,
-    ior: 1.45,
-    iridescence: 0.3,
+    roughness: 0.05,
+    transmission: 0.96,
+    thickness: 1.6,
+    ior: 1.5,
+    iridescence: 0.45,
     iridescenceIOR: 1.3,
-    attenuationColor: new THREE.Color(0xd9a05b),
-    attenuationDistance: 2.8,
-    clearcoat: 0.6,
-    clearcoatRoughness: 0.1,
-    specularIntensity: 1,
-    envMapIntensity: 1.7,
+    attenuationColor: new THREE.Color(0xc25a12),
+    attenuationDistance: 1.5,
+    clearcoat: 1,
+    clearcoatRoughness: 0.05,
+    specularIntensity: 1.2,
+    envMapIntensity: 2.4,
   });
   const bean = new THREE.Mesh(beanGeometry(), glass);
   group.add(bean);
 
   // inner ember
   const core = new THREE.Mesh(
-    new THREE.SphereGeometry(0.26, 48, 32),
-    new THREE.MeshStandardMaterial({ color: 0x2a1204, emissive: 0xd9a05b, emissiveIntensity: 1.1, roughness: 0.6 })
+    new THREE.SphereGeometry(0.42, 48, 32),
+    new THREE.MeshStandardMaterial({ color: 0x3a1604, emissive: 0xff8a2e, emissiveIntensity: 2.6, roughness: 0.5 })
   );
-  core.scale.set(0.8, 1.5, 0.6);
+  core.scale.set(0.85, 1.6, 0.55);
   group.add(core);
-  const coreLight = new THREE.PointLight(0xff8a3d, 8, 4, 2);
+  const coreLight = new THREE.PointLight(0xff8a3d, 24, 5, 2);
   group.add(coreLight);
 
   group.rotation.set(0.2, -0.5, -0.55);
@@ -146,7 +150,7 @@ export function init(host, opts = {}) {
     group.rotation.z = -0.55 + cur.x * 0.18;
     group.position.y = Math.sin(t * 0.8) * 0.06;
     core.rotation.y = bean.rotation.y;
-    coreLight.intensity = 7 + Math.sin(t * 1.7) * 1.5;
+    coreLight.intensity = 22 + Math.sin(t * 1.7) * 4;
     backdrop.position.x = -cur.x * 0.3;
     renderer.render(scene, camera);
   };
